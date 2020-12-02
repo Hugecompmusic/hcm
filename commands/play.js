@@ -98,7 +98,7 @@ module.exports = {
     if (serverQueue) {
       serverQueue.songs.push(song);
       return serverQueue.textChannel
-        .send(`✅ **${song.title}** has been added to the queue by ${message.author}`)
+        .send(`✅ **${song.title}** has been added to the queue by ${message.author}Nalla`)
         .catch(console.error);
     }
 
