@@ -18,6 +18,8 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 /**
  * Client Events
  */
+client.on("ready", () => {
+  console.log(`${client.user.username} ready!`);
     const activities_list = [
     ",play", 
     ",help",
