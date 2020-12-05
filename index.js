@@ -20,16 +20,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
  */
 client.on("ready", () => {
   console.log(`${client.user.username} ready!`);
-    const activities_list = [
-    ",play", 
-    ",help",
-    ",invite", 
-    "HugeCompMusic"]; 
-bot.on('ready', () => {
-    setInterval(() => {
-        const index = Math.floor(Math.random() * (activities_list.length - 1) + 1);
-        bot.user.setActivity(activities_list[index]); 
-    }, 10000); // Runs this every 10 seconds.
+  client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "STREAMING" });
 });
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);
