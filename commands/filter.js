@@ -1,7 +1,6 @@
 ///////////////////////////
 //////CONFIG LOAD///////////
 ////////////////////////////
-const ytsr = require("youtube-sr")
 const { Client, Collection, MessageEmbed } = require("discord.js");
 const { play } = require("../include/play")
 const { attentionembed } = require("../util/attentionembed");
