@@ -1,8 +1,9 @@
+const { canModifyQueue } = require("../util/EvobotUtil");
+
 module.exports = {
-  name: "filter",
-  aliases: ["f"],
-  description: "adds a filter",
-exports.run = async (client, message, args) => {
+  name: "loop",
+  aliases: ["l"],
+  description: "Toggle music loop",
 
     if (!message.member.voice.channel) return message.channel.send(`${client.emotes.error} - You're not in a voice channel !`);
 
