@@ -1,5 +1,3 @@
-const { canModifyQueue } = require("../util/EvobotUtil");
-
 module.exports = {
   name: "filter",
   aliases: ["f"],
