@@ -1,3 +1,7 @@
+module.exports = {
+  name: "filter",
+  aliases: ["f"],
+  description: "adds a filter",
 exports.run = async (client, message, args) => {
 
     if (!message.member.voice.channel) return message.channel.send(`${client.emotes.error} - You're not in a voice channel !`);
