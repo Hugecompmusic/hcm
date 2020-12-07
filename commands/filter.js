@@ -1,10 +1,13 @@
 const { canModifyQueue } = require("../util/EvobotUtil");
 
 module.exports = {
-  name: "loop",
-  aliases: ["l"],
-  description: "Toggle music loop",
-
+  name: "filter",
+  aliases: ["f"],
+  description: "add a filter nerd!",
+  
+    exports.run = async (client, message, args) => {
+  
+  
     if (!message.member.voice.channel) return message.channel.send(`${client.emotes.error} - You're not in a voice channel !`);
 
     if (!client.player.getQueue(message)) return message.channel.send(`${client.emotes.error} - No music currently playing !`);
@@ -24,5 +27,5 @@ module.exports = {
 
     if (filtersUpdated[filterRealName]) message.channel.send(`${client.emotes.music} - I'm **adding** the filter to the music, please wait... Note : the longer the music is, the longer this will take.`);
     else message.channel.send(`${client.emotes.music} - I'm **disabling** the filter on the music, please wait... Note : the longer the music is playing, the longer this will take.`);
-
-};
+}
+ };
