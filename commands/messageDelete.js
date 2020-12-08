@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const { PREFIX, } = require(`../config.json`);
     const logChannel = message.guild.channels.cache.find(c => c.name === "modlog");
 
     if (!logChannel) return;
