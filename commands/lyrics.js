@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const lyricsFinder = require("lyrics-finder");
 
 module.exports = {
-  name: "lyrics",
+  name: "ly",
   aliases: ["ly"],
   description: "Get lyrics for the currently playing song",
   async execute(message) {
