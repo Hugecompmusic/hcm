@@ -130,7 +130,7 @@ module.exports = {
           if (queue.volume <= 0) {
             queue.volume = 100;
             queue.connection.dispatcher.setVolumeLogarithmic(100 / 100);
-            queue.textChannel.send(`${user} 🔊 unmuted the music!`).catch(console.error);
+            queue.textChannel.send(`${user} 🔊 Removed the tape from my face!!`).catch(console.error);
           } else {
             queue.volume = 0;
             queue.connection.dispatcher.setVolumeLogarithmic(0);
@@ -164,7 +164,7 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.loop = !queue.loop;
-          queue.textChannel.send(`the thing u did is kinda cruel if u ask me cuz i wont stop playin until u stop me now... anyways the loop is now ${queue.loop ? "**on**" : "**off**"}`).catch(console.error);
+          queue.textChannel.send(`The thing u did is kinda cruel if u ask me cuz i wont stop playin until u stop me now... anyways the loop is now ${queue.loop ? "**on**" : "**off**"}`).catch(console.error);
           break;
 
         case "⏹":
