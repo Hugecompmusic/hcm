@@ -106,7 +106,7 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.connection.dispatcher.end();
-          queue.textChannel.send(`${user} ⏩ skipped the song idk why`).catch(console.error);
+          queue.textChannel.send(`${user} ⏩ skipped the song! idk why maybe its an earrape`).catch(console.error);
           collector.stop();
           break;
 
@@ -116,7 +116,7 @@ module.exports = {
           if (queue.playing) {
             queue.playing = !queue.playing;
             queue.connection.dispatcher.pause(true);
-            queue.textChannel.send(`${user} ⏸ paused the music whyy.`).catch(console.error);
+            queue.textChannel.send(`${user} ⏸ paused the music! idk whyy. Maybe his gf  is calling!! `).catch(console.error);
           } else {
             queue.playing = !queue.playing;
             queue.connection.dispatcher.resume();
@@ -134,7 +134,7 @@ module.exports = {
           } else {
             queue.volume = 0;
             queue.connection.dispatcher.setVolumeLogarithmic(0);
-            queue.textChannel.send(`${user} 🔇 muted the music! Support to ares`).catch(console.error);
+            queue.textChannel.send(`${user} 🔇 Taped my mouth so that i cant talk!! Heyy you yes u remove the tape from my face!!`).catch(console.error);
           }
           break;
 
@@ -145,7 +145,7 @@ module.exports = {
           else queue.volume = queue.volume - 10;
           queue.connection.dispatcher.setVolumeLogarithmic(queue.volume / 100);
           queue.textChannel
-            .send(`${user} 🔉 decreased the volume, the volume is now ${queue.volume}%oh yea`)
+            .send(`${user} 🔉 decreased the volume, the volume is now ${queue.volume}% it means ill speak a bit quiter..`)
             .catch(console.error);
           break;
 
@@ -164,7 +164,7 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.loop = !queue.loop;
-          queue.textChannel.send(`Loop is now ${queue.loop ? "**on**" : "**off**"}looppp`).catch(console.error);
+          queue.textChannel.send(`the thing u did is kinda cruel if u ask me cuz i wont stop playin until u stop me now... anyways the loop is now ${queue.loop ? "**on**" : "**off**"}`).catch(console.error);
           break;
 
         case "⏹":
