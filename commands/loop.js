@@ -11,6 +11,6 @@ module.exports = {
 
     // toggle from false to true and reverse
     queue.loop = !queue.loop;
-    return queue.textChannel.send(`Loop is now ${queue.loop ? "**on**" : "**off**"}`).catch(console.error);
+    return queue.textChannel.send(`The thing u did is kinda cruel if u ask me cuz i wont stop playin until u stop me now... anyways the loop is now ${queue.loop ? "**on**" : "**off**"}`).catch(console.error);
   }
 };
