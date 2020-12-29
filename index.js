@@ -5,6 +5,7 @@ const { Client, Collection } = require("discord.js");
 const { readdirSync } = require("fs");
 const { join } = require("path");
 const { TOKEN, PREFIX } = require("./util/EvobotUtil");
+const dbl = new DBL('Your top.gg token', client);
 
 const client = new Client({ disableMentions: "everyone" });
 
@@ -22,7 +23,15 @@ client.on("ready", () => {
   console.log(`${client.user.username} ready!`);
   client.user.setActivity(`${PREFIX}help and ${PREFIX}play`, { type: "STREAMING" });
  
-});
+// Optional events
+dbl.on('posted', () => {
+  console.log('Server count posted!');
+})
+
+dbl.on('error', e => {
+ console.log(`Oops! ${e}`);
+})
+})
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);
 
