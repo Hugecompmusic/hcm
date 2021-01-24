@@ -1,8 +1,6 @@
 const ytdl = require("ytdl-core-discord");
 const scdl = require("soundcloud-downloader").default;
 const { canModifyQueue, STAY_TIME, LOCALE } = require("../util/EvobotUtil");
-const i18n = require("i18n");
-i18n.setLocale(LOCALE);
 
 module.exports = {
   async play(song, message) {
@@ -52,9 +50,6 @@ module.exports = {
 
       console.error(error);
       return message.channel.send(
-        i18n.__mf("play.queueError", { error: error.message ? error.message : error })
-      );
-    }
 
     queue.connection.on("disconnect", () => message.client.queue.delete(message.guild.id));
 
