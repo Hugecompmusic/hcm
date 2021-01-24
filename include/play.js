@@ -30,66 +30,19 @@ module.exports = {
 
     let stream = null;
     let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
-  if (filters)
-    {
-      //if filter is remove
-      if (filters === "remove") {
-        //clear the filters (actual setting them to something clean which stopps earraping)
-        queue.filters = ['-af','dynaudnorm=f=200'];
-        //defining encodersargs
-        encoderArgstoset = queue.filters;
-        //try to get seektime
-        try{
-          //set seektime to the howlong a song is playing plus the oldseektime
-          seekTime = (queue.connection.dispatcher.streamTime - queue.connection.dispatcher.pausedTime) / 1000 + oldSeekTime;
-        }
-        //catch if try is not possible
-        catch{
-          //set seektime to 0
-          seekTime = 0;
-        }
-        //set the realseek time with seektime
-        queue.realseek = seekTime;
-      }
-      else{
-        //try to get seektime
-        try{
-            //set seektime to the howlong a song is playing plus the oldseektime
-          seekTime = (queue.connection.dispatcher.streamTime - queue.connection.dispatcher.pausedTime) / 1000 + oldSeekTime;
-        }
-        //catch if try is not possible
-        catch{
-          //set seektime to 0
-          seekTime = 0;
-        }
-        //set the realseek time with seektime
-        queue.realseek = seekTime;
-        //push the queue filters array so that you can have multiple filters
-        queue.filters.push(filters)
-        //set the encoderargs to the filters
-        encoderArgstoset = ['-af', queue.filters]
-      }
 
-    }
-    
     try {
       if (song.url.includes("youtube.com")) {
-         stream = ytdl(song.url, {
-          filter: "audioonly",
-          opusEncoded: true,
-          encoderArgs: encoderArgstoset,
-          bitrate: 320,
-          seek: seekTime,
-          quality: "highestaudio",
-          liveBuffer: 40000,
-          highWaterMark: 1 << 50, 
-
-      });
-      } else if (song.url.includes(".mp3") || song.url.includes("baseradiode")) {
-        stream = song.url;
-        isnotayoutube = true;
+        stream = await ytdlDiscord(song.url, { highWaterMark: 1 << 25 });
+      } else if (song.url.includes("soundcloud.com")) {
+        try {
+          stream = await scdl.downloadFormat(song.url, scdl.FORMATS.OPUS, SOUNDCLOUD_CLIENT_ID);
+        } catch (error) {
+          stream = await scdl.downloadFormat(song.url, scdl.FORMATS.MP3, SOUNDCLOUD_CLIENT_ID);
+          streamType = "unknown";
+        }
       }
-    }  catch (error) {
+    } catch (error) {
       if (queue) {
         queue.songs.shift();
         module.exports.play(queue.songs[0], message);
