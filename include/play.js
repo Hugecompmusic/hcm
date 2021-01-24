@@ -45,7 +45,8 @@ module.exports = {
           liveBuffer: 40000,
           highWaterMark: 1 << 50, 
 
-      }); else if (song.url.includes("soundcloud.com")) {
+      }); 
+        else if (song.url.includes("soundcloud.com")) {
         try {
           stream = await scdl.downloadFormat(song.url, scdl.FORMATS.OPUS, SOUNDCLOUD_CLIENT_ID);
         } catch (error) {
