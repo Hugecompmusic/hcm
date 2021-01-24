@@ -1,5 +1,5 @@
-const ytdl = require("erit-ytdl");
-const scdl = require("soundcloud-downloader").default;
+const ytdlDiscord = require("ytdl-core-discord");
+const scdl = require("soundcloud-downloader");
 const { canModifyQueue, STAY_TIME } = require("../util/EvobotUtil");
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
         queue.channel.leave();
         queue.textChannel.send("Leaving voice channel...");
       }, STAY_TIME * 1000);
-      queue.textChannel.send("❌ Music queue ended.").catch(console.error);
+      queue.textChannel.send("❌ Hey you!Add some songs.").catch(console.error);
       return message.client.queue.delete(message.guild.id);
     }
 
@@ -33,7 +33,7 @@ module.exports = {
 
     try {
       if (song.url.includes("youtube.com")) {
-        stream = await ytdl(song.url, { highWaterMark: 1 << 25 });
+        stream = await ytdlDiscord(song.url, { highWaterMark: 1 << 25 });
       } else if (song.url.includes("soundcloud.com")) {
         try {
           stream = await scdl.downloadFormat(song.url, scdl.FORMATS.OPUS, SOUNDCLOUD_CLIENT_ID);
@@ -106,7 +106,7 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.connection.dispatcher.end();
-          queue.textChannel.send(`${user} ⏩ skipped the song`).catch(console.error);
+          queue.textChannel.send(`${user} ⏩ skipped the song! idk why maybe its an earrape`).catch(console.error);
           collector.stop();
           break;
 
@@ -116,11 +116,11 @@ module.exports = {
           if (queue.playing) {
             queue.playing = !queue.playing;
             queue.connection.dispatcher.pause(true);
-            queue.textChannel.send(`${user} ⏸ paused the music.`).catch(console.error);
+            queue.textChannel.send(`${user} ⏸ paused the music! idk whyy. Maybe his gf  is calling!! `).catch(console.error);
           } else {
             queue.playing = !queue.playing;
             queue.connection.dispatcher.resume();
-            queue.textChannel.send(`${user} ▶ resumed the music!`).catch(console.error);
+            queue.textChannel.send(`${user} ▶ resumed the music!lol`).catch(console.error);
           }
           break;
 
@@ -130,11 +130,11 @@ module.exports = {
           if (queue.volume <= 0) {
             queue.volume = 100;
             queue.connection.dispatcher.setVolumeLogarithmic(100 / 100);
-            queue.textChannel.send(`${user} 🔊 unmuted the music!`).catch(console.error);
+            queue.textChannel.send(`${user} 🔊 Removed the tape from my face!!`).catch(console.error);
           } else {
             queue.volume = 0;
             queue.connection.dispatcher.setVolumeLogarithmic(0);
-            queue.textChannel.send(`${user} 🔇 muted the music!`).catch(console.error);
+            queue.textChannel.send(`${user} 🔇 Taped my mouth so that i cant talk!! Heyy you yes u remove the tape from my face!!`).catch(console.error);
           }
           break;
 
@@ -145,7 +145,7 @@ module.exports = {
           else queue.volume = queue.volume - 10;
           queue.connection.dispatcher.setVolumeLogarithmic(queue.volume / 100);
           queue.textChannel
-            .send(`${user} 🔉 decreased the volume, the volume is now ${queue.volume}%`)
+            .send(`${user} 🔉 decreased the volume, the volume is now ${queue.volume}% it means ill speak a bit quiter..`)
             .catch(console.error);
           break;
 
@@ -164,14 +164,14 @@ module.exports = {
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.loop = !queue.loop;
-          queue.textChannel.send(`Loop is now ${queue.loop ? "**on**" : "**off**"}`).catch(console.error);
+          queue.textChannel.send(`The thing u did is kinda cruel if u ask me cuz i wont stop playin until u stop me now... anyways the loop is now ${queue.loop ? "**on**" : "**off**"}`).catch(console.error);
           break;
 
         case "⏹":
           reaction.users.remove(user).catch(console.error);
           if (!canModifyQueue(member)) return;
           queue.songs = [];
-          queue.textChannel.send(`${user} ⏹ stopped the music!`).catch(console.error);
+          queue.textChannel.send(`${user} ⏹ stopped the music!Noooooo`).catch(console.error);
           try {
             queue.connection.dispatcher.end();
           } catch (error) {
