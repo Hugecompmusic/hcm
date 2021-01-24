@@ -33,10 +33,19 @@ module.exports = {
     let stream = null;
     let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
 
-    try {
+    t try {
       if (song.url.includes("youtube.com")) {
-        stream = await ytdl(song.url, { highWaterMark: 1 << 25 });
-      } else if (song.url.includes("soundcloud.com")) {
+         stream = ytdl(song.url, {
+          filter: "audioonly",
+          opusEncoded: true,
+          encoderArgs: encoderArgstoset,
+          bitrate: 320,
+          seek: seekTime,
+          quality: "highestaudio",
+          liveBuffer: 40000,
+          highWaterMark: 1 << 50, 
+
+      }); else if (song.url.includes("soundcloud.com")) {
         try {
           stream = await scdl.downloadFormat(song.url, scdl.FORMATS.OPUS, SOUNDCLOUD_CLIENT_ID);
         } catch (error) {
