@@ -49,7 +49,9 @@ module.exports = {
       connection: null,
       songs: [],
       loop: false,
-      volume: 100,
+      volume: 69,
+      filters: [],
+      realseek: 0,
       playing: true
     };
 
