@@ -33,7 +33,7 @@ module.exports = {
     let stream = null;
     let streamType = song.url.includes("youtube.com") ? "opus" : "ogg/opus";
 
-    t try {
+     try {
       if (song.url.includes("youtube.com")) {
          stream = ytdl(song.url, {
           filter: "audioonly",
