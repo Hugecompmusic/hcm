@@ -35,20 +35,14 @@ module.exports = {
 
     try {
       if (song.url.includes("youtube.com")) {
-         stream = ytdl(song.url, {
-          filter: "audioonly",
-          opusEncoded: true,
-          encoderArgs: encoderArgstoset,
-          bitrate: 320,
-          seek: seekTime,
-          quality: "highestaudio",
-          liveBuffer: 40000,
-          highWaterMark: 1 << 50, 
-
-      });
-      } else if (song.url.includes(".mp3") || song.url.includes("baseradiode")) {
-        stream = song.url;
-        isnotayoutube = true;
+        stream = await ytdl(song.url, { highWaterMark: 1 << 25 });
+      } else if (song.url.includes("soundcloud.com")) {
+        try {
+          stream = await scdl.downloadFormat(song.url, scdl.FORMATS.OPUS, SOUNDCLOUD_CLIENT_ID);
+        } catch (error) {
+          stream = await scdl.downloadFormat(song.url, scdl.FORMATS.MP3, SOUNDCLOUD_CLIENT_ID);
+          streamType = "unknown";
+        }
       }
     } catch (error) {
       if (queue) {
