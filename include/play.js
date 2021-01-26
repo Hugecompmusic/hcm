@@ -79,14 +79,6 @@ module.exports = {
     dispatcher.setVolumeLogarithmic(queue.volume / 100);
 
     try {
-         const newsong = new MessageEmbed()
-        .setTitle("<:Playing:769665713124016128>  "+song.title)
-        .setURL(song.url)
-        .setColor("#c219d8")
-        .setThumbnail(thumb)
-        .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator} v2.08.beta`, message.member.user.displayAvatarURL({ dynamic: true }))
-        .addField("Duration:", `\`${song.duration} Minutes\``, true)
-         
       var playingMessage = await queue.textChannel.send(`🎶 Started playing: **${song.title}** ${song.url}`);
       await playingMessage.react("⏭");
       await playingMessage.react("⏯");
