@@ -79,7 +79,7 @@ module.exports = {
     dispatcher.setVolumeLogarithmic(queue.volume / 100);
 
     try {
-      const newsong = new MessageEmbed()
+         const newsong = new MessageEmbed()
         .setTitle("<:Playing:769665713124016128>  "+song.title)
         .setURL(song.url)
         .setColor("#c219d8")
@@ -87,8 +87,7 @@ module.exports = {
         .setFooter(`Requested by: ${message.author.username}#${message.author.discriminator} v2.08.beta`, message.member.user.displayAvatarURL({ dynamic: true }))
         .addField("Duration:", `\`${song.duration} Minutes\``, true)
          
-      var playingMessage = await queue.textChannel.send(newsong);
-
+      var playingMessage = await queue.textChannel.send(`🎶 Started playing: **${song.title}** ${song.url}`);
       await playingMessage.react("⏭");
       await playingMessage.react("⏯");
       await playingMessage.react("🔇");
@@ -99,6 +98,11 @@ module.exports = {
     } catch (error) {
       console.error(error);
     }
+
+    const filter = (reaction, user) => user.id !== message.client.user.id;
+    var collector = playingMessage.createReactionCollector(filter, {
+      time: song.duration > 0 ? song.duration * 1000 : 600000
+    });
 
     collector.on("collect", (reaction, user) => {
       if (!queue) return;
