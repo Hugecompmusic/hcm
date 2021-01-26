@@ -98,13 +98,7 @@ module.exports = {
     } catch (error) {
       console.error(error);
     }
-
-    const filter = (reaction, user) => user.id !== message.client.user.id;
-    var collector = playingMessage.createReactionCollector(filter, {
-      time: song.duration > 0 ? song.duration * 1000 : 600000
-    });
-
-    collector.on("collect", (reaction, user) => {
+      collector.on("collect", (reaction, user) => {
       if (!queue) return;
       const member = message.guild.member(user);
 
